@@ -14,6 +14,25 @@ class Node {
     }
     this.next.appendNode(value);
   }
+  removeNode(value){
+    let tempNode = this;
+    let prevNode = null;
+
+    if(tempNode.value == value){
+      head = this.next;
+      tempNode = null ;
+      return;
+    }
+    while(tempNode.next !== null && tempNode.value != value){
+      prevNode = tempNode;
+      tempNode = tempNode.next;
+    }
+    if(tempNode.next === null){
+      return console.log('not found');
+    }
+    prevNode.next = tempNode.next;
+
+  }
 }
 
 
