@@ -5,7 +5,7 @@ class Node {
     this.value = value;
     this.next = null;
   }
-  appendNode(value){
+  appendNode(value){ // O(n)
     if(!(value instanceof Node))
       return null;
     if(!this.next){
@@ -14,10 +14,10 @@ class Node {
     }
     this.next.appendNode(value);
   }
-  removeNode(value){
-  let currentNode = this
-  let previousNode = null;
-  let notFoundYet = null;
+  removeNode(value){ // O(n)
+    let currentNode = this;
+    let previousNode = null;
+    let notFoundYet = null;
 
     if(currentNode.value == value){
       currentNode.value = null;
@@ -40,11 +40,35 @@ class Node {
 
     return;
   }
+
+  reverseNode(){ // O(n)
+    let currentNode = this;
+    let previousNode = null;
+    let saveNode;
+
+    while(currentNode) {
+      saveNode = currentNode.next;
+      currentNode.next = previousNode;
+      previousNode = currentNode;
+      currentNode = saveNode;
+    }
+    return previousNode;
+  }
+
+  findMiddleNode(){ // O(n)
+    let slowNode, fastNode;
+    slowNode = fastNode = this;
+    while(fastNode && fastNode.next && fastNode.next.next){
+      slowNode = slowNode.next;
+      fastNode = fastNode.next.next;
+    }
+    return slowNode;
+  }
 }
 
 
 
-//RUNNIG TESTST
+//RUNNIG TESTS
 
 try {
   console.log('runnint test, please wait...');
